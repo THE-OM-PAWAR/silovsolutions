@@ -25,7 +25,7 @@ export function Hero() {
           </p>
         </div>
         <div>
-          <Button className="h-12 rounded-full bg-emerald-500 px-6 text-base text-black hover:bg-emerald-400">
+          <Button className="h-12 rounded-full bg-silov-medium-blue px-6 text-base text-silov-white hover:bg-silov-dark-blue">
             Download Brochure
             <ArrowUpRight className="ml-2 h-4 w-4" />
           </Button>

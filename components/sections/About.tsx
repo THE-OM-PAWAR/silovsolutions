@@ -17,7 +17,7 @@ export function About() {
       <div className="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6">
         <div className="grid items-center gap-10 md:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-silov-dark-blue">
               About Us
             </p>
             <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">

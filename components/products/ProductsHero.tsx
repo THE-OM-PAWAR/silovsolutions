@@ -12,7 +12,7 @@ export function ProductsHero() {
     <section className="bg-white pb-10 pt-16">
       <div className="mx-auto w-full max-w-6xl space-y-8 px-4 sm:px-6">
         <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-silov-dark-blue">
             Products
           </p>
           <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
@@ -29,7 +29,7 @@ export function ProductsHero() {
               key={item.label}
               className="flex items-center gap-3 rounded-2xl border border-border/60 bg-zinc-50 px-4 py-5 text-sm font-medium text-foreground"
             >
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-silov-light-blue text-silov-dark-blue">
                 <item.icon className="h-5 w-5" />
               </span>
               <span>{item.label}</span>

@@ -15,7 +15,7 @@ export function CategoryNav() {
           <Link
             key={item.label}
             href={item.href}
-            className="rounded-full border border-border/60 px-4 py-2 text-muted-foreground transition hover:border-emerald-200 hover:text-foreground"
+            className="rounded-full border border-border/60 px-4 py-2 text-muted-foreground transition hover:border-silov-medium-blue hover:text-foreground"
           >
             {item.label}
           </Link>

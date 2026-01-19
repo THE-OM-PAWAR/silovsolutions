@@ -44,7 +44,7 @@ export function Clientele() {
     <section className="bg-sky-50/60 py-16 sm:py-20">
       <div className="mx-auto w-full max-w-6xl space-y-10 px-4 sm:px-6">
         <div className="space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-silov-dark-blue">
             Key Clientele
           </p>
           <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">

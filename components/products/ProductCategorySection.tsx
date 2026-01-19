@@ -14,7 +14,7 @@ export function ProductCategorySection({
     <section id={category.id} className="bg-white py-16">
       <div className="mx-auto w-full max-w-6xl space-y-8 px-4 sm:px-6">
         <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-silov-dark-blue">
             {category.title}
           </p>
           <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">

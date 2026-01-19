@@ -63,15 +63,15 @@ const teamMembers: TeamMember[] = [
 
 export function TeamProfiles() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-silov-white">
       <div className="container mx-auto px-4">
         <div className="space-y-16">
           {teamMembers.map((member, index) => (
-            <div key={index} className="bg-gray-50 rounded-2xl p-8 md:p-12 shadow-lg">
+            <div key={index} className="bg-silov-light-blue/30 rounded-2xl p-8 md:p-12 shadow-lg border border-silov-light-blue/50">
               <div className="grid md:grid-cols-3 gap-8 items-start">
                 {/* Profile Image */}
                 <div className="md:col-span-1">
-                  <div className="relative w-64 h-64 mx-auto rounded-full overflow-hidden shadow-xl">
+                  <div className="relative w-64 h-64 mx-auto rounded-full overflow-hidden shadow-xl border-4 border-silov-medium-blue/20">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -80,7 +80,7 @@ export function TeamProfiles() {
                       onError={(e) => {
                         // Fallback to a placeholder if image doesn't exist
                         const target = e.target as HTMLImageElement;
-                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&size=256&background=3b82f6&color=ffffff&bold=true`;
+                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&size=256&background=1223bf&color=ffffff&bold=true`;
                       }}
                     />
                   </div>
@@ -90,17 +90,17 @@ export function TeamProfiles() {
                 <div className="md:col-span-2 space-y-6">
                   {/* Name and Title */}
                   <div className="text-center md:text-left">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                    <h2 className="text-3xl md:text-4xl font-bold text-silov-black mb-2">
                       {member.name}
                     </h2>
-                    <h3 className="text-xl text-blue-600 font-semibold">
+                    <h3 className="text-xl text-silov-dark-blue font-semibold">
                       {member.title}
                     </h3>
                   </div>
 
                   {/* Biography */}
                   <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-800 leading-relaxed">
                       {member.bio}
                     </p>
                   </div>
@@ -108,14 +108,14 @@ export function TeamProfiles() {
                   {/* Awards and Honours */}
                   {member.awards.length > 0 && (
                     <div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-4 border-b-2 border-blue-200 pb-2">
+                      <h4 className="text-xl font-bold text-silov-black mb-4 border-b-2 border-silov-medium-blue pb-2">
                         Awards and Honours
                       </h4>
                       <ul className="space-y-2">
                         {member.awards.map((award, awardIndex) => (
                           <li key={awardIndex} className="flex items-start">
-                            <span className="text-blue-500 mr-3 mt-1">•</span>
-                            <span className="text-gray-700">{award}</span>
+                            <span className="text-silov-dark-blue mr-3 mt-1 font-bold">•</span>
+                            <span className="text-gray-800">{award}</span>
                           </li>
                         ))}
                       </ul>
@@ -124,14 +124,14 @@ export function TeamProfiles() {
 
                   {/* Publications and Patents */}
                   <div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-4 border-b-2 border-blue-200 pb-2">
+                    <h4 className="text-xl font-bold text-silov-black mb-4 border-b-2 border-silov-medium-blue pb-2">
                       Publications and Patents
                     </h4>
                     <ul className="space-y-2">
                       {member.publications.map((publication, pubIndex) => (
                         <li key={pubIndex} className="flex items-start">
-                          <span className="text-blue-500 mr-3 mt-1">•</span>
-                          <span className="text-gray-700">{publication}</span>
+                          <span className="text-silov-dark-blue mr-3 mt-1 font-bold">•</span>
+                          <span className="text-gray-800">{publication}</span>
                         </li>
                       ))}
                     </ul>

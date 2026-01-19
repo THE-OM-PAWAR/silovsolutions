@@ -36,26 +36,26 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="grid gap-4 lg:grid-cols-2">
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-silov-dark-blue">
                 Key Features & Technical Specifications
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {[...product.specs, ...product.features].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="mt-1 h-2 w-2 rounded-full bg-silov-medium-blue" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-silov-dark-blue">
                 Key Experiments & Use Cases
               </p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {product.useCases.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="mt-1 h-2 w-2 rounded-full bg-silov-medium-blue" />
                     <span>{item}</span>
                   </li>
                 ))}
