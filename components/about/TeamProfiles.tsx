@@ -63,79 +63,181 @@ const teamMembers: TeamMember[] = [
 
 export function TeamProfiles() {
   return (
-    <section className="py-20 bg-silov-white">
-      <div className="container mx-auto px-4">
-        <div className="space-y-16">
+    <section className="bg-silov-light-gray py-16 sm:py-20">
+      <div className="container mx-auto max-w-6xl px-2 sm:px-3">
+        <div className="space-y-8 lg:space-y-12">
           {teamMembers.map((member, index) => (
-            <div key={index} className="bg-silov-light-blue/30 rounded-2xl p-8 md:p-12 shadow-lg border border-silov-light-blue/50">
-              <div className="grid md:grid-cols-3 gap-8 items-start">
+            <div key={index} className="rounded-sm border border-border/40 bg-white p-8 md:p-12">
+              <div className="grid gap-10 md:grid-cols-3 md:gap-12">
                 {/* Profile Image */}
                 <div className="md:col-span-1">
-                  <div className="relative w-64 h-64 mx-auto rounded-full overflow-hidden shadow-xl border-4 border-silov-medium-blue/20">
+                  <div className="relative mx-auto h-64 w-64 overflow-hidden rounded-full">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className="object-cover grayscale"
                       onError={(e) => {
                         // Fallback to a placeholder if image doesn't exist
                         const target = e.target as HTMLImageElement;
-                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&size=256&background=1223bf&color=ffffff&bold=true`;
+                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&size=256&background=000000&color=ffffff&bold=true`;
                       }}
                     />
                   </div>
                 </div>
 
                 {/* Profile Content */}
-                <div className="md:col-span-2 space-y-6">
+                <div className="space-y-4 md:col-span-2">
                   {/* Name and Title */}
-                  <div className="text-center md:text-left">
-                    <h2 className="text-3xl md:text-4xl font-bold text-silov-black mb-2">
+                  <div className="text-left">
+                    <h2 className="text-3xl font-normal text-silov-black md:text-4xl">
                       {member.name}
                     </h2>
-                    <h3 className="text-xl text-silov-dark-blue font-semibold">
+                    <h3 className="mt-2 text-lg font-normal text-muted-foreground">
                       {member.title}
                     </h3>
                   </div>
 
                   {/* Biography */}
                   <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-800 leading-relaxed">
-                      {member.bio}
-                    </p>
+                    {/* Collapsible bio with More/Less button - responsive to screen size */}
+                    {(() => {
+                      // We'll show n lines depending on breakpoint
+                      // 3 lines on mobile, 6 lines on md and up
+                      // We approximate "lines" by splitting sentences or by char length
+                      // Here, we split by ". " and adjust cutoff accordingly
+                      // If bio is short, just show all
+
+                      const [expanded, setExpanded] = React.useState(false);
+
+                      // Split bio by sentence
+                      const sentences = member.bio.split(/(?<=\.)\s+/);
+
+                      // Responsive: useWindowWidth to pick how many lines
+                      const [windowWidth, setWindowWidth] = React.useState(
+                        typeof window !== "undefined" ? window.innerWidth : 1024
+                      );
+
+                      React.useEffect(() => {
+                        function handleResize() {
+                          setWindowWidth(window.innerWidth);
+                        }
+                        window.addEventListener("resize", handleResize);
+                        return () => window.removeEventListener("resize", handleResize);
+                      }, []);
+
+                      // Set lines shown / sentences shown depending on breakpoint
+                      let sentencesToShow = windowWidth < 768 ? 3 : 5;
+                      const shouldShowButton = sentences.length > sentencesToShow;
+
+                      const shownText = sentences.slice(0, sentencesToShow).join(" ");
+                      const hiddenText = sentences.slice(sentencesToShow).join(" ");
+
+                      return (
+                        <div>
+                          <p className="text-base font-normal leading-relaxed text-silov-dark-gray">
+                            {expanded || !shouldShowButton ? (
+                              <>
+                                {member.bio}
+                                {shouldShowButton && (
+                                  <>
+                                    {" "}
+                                    <button
+                                      className="ml-2 text-silov-black underline underline-offset-2 hover:text-silov-dark-gray focus:outline-none"
+                                      onClick={() => setExpanded(false)}
+                                      type="button"
+                                    >
+                                      Less
+                                    </button>
+                                  </>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                {shownText}
+                                {"... "}
+                                <button
+                                  className="text-silov-black underline underline-offset-2 hover:text-silov-dark-gray focus:outline-none"
+                                  onClick={() => setExpanded(true)}
+                                  type="button"
+                                >
+                                  More
+                                </button>
+                              </>
+                            )}
+                          </p>
+                        </div>
+                      );
+                    })()}
                   </div>
 
-                  {/* Awards and Honours */}
-                  {member.awards.length > 0 && (
-                    <div>
-                      <h4 className="text-xl font-bold text-silov-black mb-4 border-b-2 border-silov-medium-blue pb-2">
-                        Awards and Honours
-                      </h4>
-                      <ul className="space-y-2">
-                        {member.awards.map((award, awardIndex) => (
-                          <li key={awardIndex} className="flex items-start">
-                            <span className="text-silov-dark-blue mr-3 mt-1 font-bold">•</span>
-                            <span className="text-gray-800">{award}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  {/* Awards and Honours Accordion */}
+                  {member.awards.length > 0 && (() => {
+                    const [isAwardsOpen, setIsAwardsOpen] = React.useState(false);
+                    return (
+                      <div>
+                        <button
+                          onClick={() => setIsAwardsOpen(!isAwardsOpen)}
+                          className="flex w-full items-center justify-between border-b border-border/40 pb-3 text-left text-xl font-normal text-silov-black transition-colors hover:text-silov-dark-gray focus:outline-none"
+                          type="button"
+                        >
+                          <span>Awards and Honours</span>
+                          <svg
+                            className={`h-5 w-5 transition-transform ${isAwardsOpen ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        {isAwardsOpen && (
+                          <ul className="mt-4 space-y-3">
+                            {member.awards.map((award, awardIndex) => (
+                              <li key={awardIndex} className="flex items-start">
+                                <span className="mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black"></span>
+                                <span className="text-sm font-normal text-silov-dark-gray">{award}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })()}
 
-                  {/* Publications and Patents */}
-                  <div>
-                    <h4 className="text-xl font-bold text-silov-black mb-4 border-b-2 border-silov-medium-blue pb-2">
-                      Publications and Patents
-                    </h4>
-                    <ul className="space-y-2">
-                      {member.publications.map((publication, pubIndex) => (
-                        <li key={pubIndex} className="flex items-start">
-                          <span className="text-silov-dark-blue mr-3 mt-1 font-bold">•</span>
-                          <span className="text-gray-800">{publication}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {/* Publications and Patents Accordion */}
+                  {(() => {
+                    const [isPublicationsOpen, setIsPublicationsOpen] = React.useState(false);
+                    return (
+                      <div>
+                        <button
+                          onClick={() => setIsPublicationsOpen(!isPublicationsOpen)}
+                          className="flex w-full items-center justify-between border-b border-border/40 pb-3 text-left text-xl font-normal text-silov-black transition-colors hover:text-silov-dark-gray focus:outline-none"
+                          type="button"
+                        >
+                          <span>Publications and Patents</span>
+                          <svg
+                            className={`h-5 w-5 transition-transform ${isPublicationsOpen ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        {isPublicationsOpen && (
+                          <ul className="mt-4 space-y-3">
+                            {member.publications.map((publication, pubIndex) => (
+                              <li key={pubIndex} className="flex items-start">
+                                <span className="mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black"></span>
+                                <span className="text-sm font-normal text-silov-dark-gray">{publication}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
             </div>

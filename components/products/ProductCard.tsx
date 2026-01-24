@@ -13,10 +13,10 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       id={product.id}
-      className="rounded-2xl border border-border/60 bg-white shadow-sm"
+      className="rounded-sm border border-border/40 bg-white"
     >
-      <div className="grid gap-6 p-6 lg:grid-cols-[280px_1fr]">
-        <div className="overflow-hidden rounded-2xl border border-border/60 bg-zinc-100">
+      <div className="grid gap-8 p-8 lg:grid-cols-[320px_1fr] lg:gap-10">
+        <div className="overflow-hidden rounded-sm border border-border/40 bg-zinc-50">
           <Image
             src={product.image}
             alt={product.name}
@@ -25,37 +25,37 @@ export function ProductCard({ product }: ProductCardProps) {
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="space-y-5">
-          <div className="space-y-2">
-            <h3 className="text-2xl font-semibold text-foreground">
+        <div className="space-y-6">
+          <div className="space-y-3">
+            <h3 className="text-2xl font-normal text-foreground sm:text-3xl">
               {product.name}
             </h3>
-            <p className="text-sm leading-6 text-muted-foreground">
+            <p className="text-base font-normal leading-relaxed text-silov-dark-gray">
               {product.description}
             </p>
           </div>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-silov-dark-blue">
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="space-y-3">
+              <p className="text-sm font-normal uppercase tracking-[0.1em] text-muted-foreground">
                 Key Features & Technical Specifications
               </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm font-normal text-silov-dark-gray">
                 {[...product.specs, ...product.features].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-silov-medium-blue" />
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-silov-dark-blue">
+            <div className="space-y-3">
+              <p className="text-sm font-normal uppercase tracking-[0.1em] text-muted-foreground">
                 Key Experiments & Use Cases
               </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm font-normal text-silov-dark-gray">
                 {product.useCases.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-silov-medium-blue" />
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -63,13 +63,13 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button asChild className="rounded-full bg-black text-white">
+            <Button asChild className="h-11 rounded-sm bg-black text-sm font-normal text-white hover:bg-silov-dark-gray">
               <Link href="https://gem.gov.in" target="_blank">
                 Check it on GEM
                 <ExternalLink className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" className="rounded-full">
+            <Button asChild variant="outline" className="h-11 rounded-sm text-sm font-normal">
               <Link
                 href="mailto:silov.solutions@gmail.com?subject=Brochure%20Request"
               >
@@ -77,7 +77,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 <FileDown className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="secondary" className="rounded-full">
+            <Button asChild variant="secondary" className="h-11 rounded-sm text-sm font-normal">
               <Link href="#custom-requirements">
                 Contact Us Directly
                 <Mail className="ml-2 h-4 w-4" />

@@ -4,33 +4,30 @@ import { Textarea } from "@/components/ui/textarea";
 
 export function InquiryForm() {
   return (
-    <section id="inquiry" className="bg-zinc-50 py-16">
+    <section id="inquiry" className="bg-silov-light-gray py-16 sm:py-20">
       <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
-        <div className="space-y-4 rounded-2xl border border-border/60 bg-white p-8 shadow-sm">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
-              Drop us a message
-            </p>
-            <h2 className="text-3xl font-semibold text-foreground">
+        <div className="space-y-6 rounded-sm border border-border/40 bg-white p-8 sm:p-10">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-normal text-foreground sm:text-4xl">
               Drop us a message
             </h2>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base font-normal text-silov-dark-gray">
               Tell us about your requirements and our engineering team will
               respond shortly.
             </p>
           </div>
           <form className="grid gap-4 sm:grid-cols-2">
-            <Input placeholder="Full Name" className="sm:col-span-1" />
+            <Input placeholder="Full Name" className="h-12 rounded-sm border-border/60 text-base sm:col-span-1" />
             <Input
               type="email"
               placeholder="Email Address"
-              className="sm:col-span-1"
+              className="h-12 rounded-sm border-border/60 text-base sm:col-span-1"
             />
             <div className="sm:col-span-2">
-              <label className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <label className="mb-2 block text-sm font-normal uppercase tracking-[0.1em] text-muted-foreground">
                 Subject
               </label>
-              <select className="h-11 w-full rounded-md border border-border bg-transparent px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500">
+              <select className="h-12 w-full rounded-sm border border-border/60 bg-transparent px-3 text-base font-normal text-foreground focus:outline-none focus:ring-2 focus:ring-silov-black">
                 <option>Product Inquiry</option>
                 <option>Technical Support</option>
                 <option>Partnership</option>
@@ -38,9 +35,9 @@ export function InquiryForm() {
             </div>
             <Textarea
               placeholder="Message / Requirements"
-              className="min-h-[160px] sm:col-span-2"
+              className="min-h-[160px] rounded-sm border-border/60 text-base sm:col-span-2"
             />
-            <Button className="h-11 bg-emerald-600 text-white hover:bg-emerald-500 sm:col-span-2">
+            <Button className="h-12 rounded-sm bg-silov-black text-base font-normal text-white hover:bg-silov-dark-gray sm:col-span-2 sm:h-14">
               Send Message
             </Button>
           </form>

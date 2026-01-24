@@ -26,7 +26,7 @@ const awards = [
     image: "/recognition/social_alpha_logo-Yg2q09ezR5FLPbbP.avif",
   },
   {
-    title: "Clean Energy Int’l",
+    title: "Clean Energy Int'l",
     subtitle: "Incubation Centre",
     year: "(CEIIC), TATA",
     description:
@@ -37,43 +37,45 @@ const awards = [
 
 export function Awards() {
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto w-full max-w-6xl space-y-12 px-4 sm:px-6">
-        <div className="space-y-3 text-center">
-          <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
-            Major <span className="text-indigo-500">Recognitions</span>
+    <section className="bg-silov-light-gray py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-6xl space-y-12 px-4 sm:px-6 lg:space-y-16">
+        <div className="space-y-6 text-left">
+          <h2 className="text-4xl font-normal leading-[1.15] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-6xl">
+            Major Recognitions
           </h2>
-          <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground">
+          <p className="max-w-3xl text-base font-normal leading-relaxed text-silov-dark-gray sm:text-lg">
             We have a proven track record of developing cutting-edge technology
             which led us to receive multiple awards and recognitions from
             leading academic and entrepreneurial organizations.
           </p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {awards.map((award) => (
             <div
               key={`${award.title}-${award.year}`}
-              className="flex h-full flex-col rounded-3xl border border-sky-100 bg-sky-50/70 p-6 text-center shadow-sm"
+              className="group flex flex-col rounded-sm border border-border/40 bg-white p-6 transition-all hover:border-border hover:shadow-sm sm:p-8"
             >
-              <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-white shadow-sm">
+              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-sm bg-silov-light-gray transition-colors group-hover:bg-silov-medium-gray/10 sm:h-24 sm:w-24">
                 <Image
                   src={award.image}
                   alt={award.title}
                   width={112}
                   height={112}
-                  className="h-20 w-20 object-contain"
+                  className="h-14 w-14 object-contain grayscale transition-all group-hover:grayscale-0 sm:h-16 sm:w-16"
                 />
               </div>
-              <div className="mt-5 space-y-2">
-                <p className="text-sm font-semibold text-foreground">
-                  {award.title}
-                </p>
-                <p className="text-sm font-semibold text-foreground">
-                  {award.subtitle}
-                </p>
-                <p className="text-sm text-slate-600">{award.year}</p>
+              <div className="mb-4 flex-1 space-y-3">
+                <div className="space-y-1">
+                  <h3 className="text-lg font-normal leading-tight text-foreground sm:text-xl">
+                    {award.title}
+                  </h3>
+                  <p className="text-base font-normal text-foreground sm:text-lg">
+                    {award.subtitle}
+                  </p>
+                </div>
+                <p className="text-sm font-normal text-muted-foreground">{award.year}</p>
               </div>
-              <p className="mt-4 text-sm leading-6 text-slate-600">
+              <p className="text-sm font-normal leading-relaxed text-silov-dark-gray">
                 {award.description}
               </p>
             </div>
@@ -83,4 +85,3 @@ export function Awards() {
     </section>
   );
 }
-
