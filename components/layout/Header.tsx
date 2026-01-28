@@ -2,8 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, ChevronDown, Zap, ChevronRight } from "lucide-react";
+import { Menu, ChevronDown, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -53,12 +54,18 @@ export function Header({ activePath }: HeaderProps) {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 sm:h-18 sm:px-8">
         <Link 
           href="/#home" 
-          className="flex items-center gap-2.5 text-base font-bold transition-opacity hover:opacity-80 sm:text-lg"
+          className="flex items-center transition-opacity hover:opacity-80"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-black text-white sm:h-10 sm:w-10">
-            <Zap className="h-4 w-4 sm:h-5 sm:w-5" />
-          </span>
-          <span className="text-foreground tracking-tight">Silov Solutions</span>
+          <div className="relative h-12 w-auto sm:h-14">
+            <Image
+              src="/Silovhome/screenshot-2025-02-06-at-11.52.04a-am-AwvD2bRZelspa1GG.avif"
+              alt="Silov Solutions Logo"
+              height={56}
+              width={200}
+              className="h-full w-auto object-contain"
+              priority
+            />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -93,7 +100,7 @@ export function Header({ activePath }: HeaderProps) {
                 {productCategories.map((category) => (
                   <div
                     key={category.id}
-                    className="rounded-xl border border-border/40 bg-silov-cream/30 p-4 transition-all hover:bg-silov-cream hover:border-border"
+                    className="rounded-xl border border-border/40 bg-white p-4 transition-all hover:bg-gray-50 hover:border-gray-300"
                   >
                     <Link
                       href={`/products#${category.id}`}
@@ -152,7 +159,7 @@ export function Header({ activePath }: HeaderProps) {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-silov-cream"
+                  className="block cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-gray-50"
                 >
                   {item.label}
                 </Link>
@@ -180,11 +187,17 @@ export function Header({ activePath }: HeaderProps) {
             <div className="flex h-full flex-col">
               {/* Header */}
               <SheetHeader className="border-b border-border/40 px-6 py-6">
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-white">
-                    <Zap className="h-5 w-5" />
-                  </span>
-                  <SheetTitle className="text-left text-base font-bold text-foreground">
+                <div className="flex items-center">
+                  <div className="relative h-12 w-auto">
+                    <Image
+                      src="/Silovhome/screenshot-2025-02-06-at-11.52.04a-am-AwvD2bRZelspa1GG.avif"
+                      alt="Silov Solutions Logo"
+                      height={48}
+                      width={180}
+                      className="h-full w-auto object-contain"
+                    />
+                  </div>
+                  <SheetTitle className="sr-only">
                     Silov Solutions
                   </SheetTitle>
                 </div>
@@ -201,8 +214,8 @@ export function Header({ activePath }: HeaderProps) {
                       href="/#home"
                       className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                         isHome
-                          ? "bg-silov-cream text-foreground"
-                          : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
+                          ? "bg-silov-blue text-white"
+                          : "text-silov-dark-gray hover:bg-gray-50 hover:text-foreground"
                       }`}
                       onClick={closeMobileMenu}
                     >
@@ -218,8 +231,8 @@ export function Header({ activePath }: HeaderProps) {
                           href="/products"
                           className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                             isProducts
-                              ? "bg-silov-cream text-foreground"
-                              : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
+                              ? "bg-silov-blue text-white"
+                              : "text-silov-dark-gray hover:bg-gray-50 hover:text-foreground"
                           }`}
                           onClick={closeMobileMenu}
                         >
@@ -228,7 +241,7 @@ export function Header({ activePath }: HeaderProps) {
                       </SheetClose>
                       <button
                         onClick={() => setProductsOpen(!productsOpen)}
-                        className="rounded-xl px-3 py-3 text-silov-dark-gray hover:bg-silov-cream/50 transition-colors"
+                        className="rounded-xl px-3 py-3 text-silov-dark-gray hover:bg-gray-50 transition-colors"
                       >
                         <ChevronDown
                           className={`h-5 w-5 transition-transform duration-200 ${
@@ -243,7 +256,7 @@ export function Header({ activePath }: HeaderProps) {
                         {productCategories.map((category) => (
                           <div
                             key={category.id}
-                            className="rounded-xl border border-border/40 bg-silov-cream/30 p-4"
+                            className="rounded-xl border border-border/40 bg-white p-4"
                           >
                             <SheetClose asChild>
                               <Link
@@ -283,8 +296,8 @@ export function Header({ activePath }: HeaderProps) {
                       href="/about"
                       className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                         isAbout
-                          ? "bg-silov-cream text-foreground"
-                          : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
+                          ? "bg-silov-blue text-white"
+                          : "text-silov-dark-gray hover:bg-gray-50 hover:text-foreground"
                       }`}
                       onClick={closeMobileMenu}
                     >
@@ -298,8 +311,8 @@ export function Header({ activePath }: HeaderProps) {
                       onClick={() => setContactOpen(!contactOpen)}
                       className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-base font-medium transition-colors ${
                         isContact
-                          ? "bg-silov-cream text-foreground"
-                          : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
+                          ? "bg-silov-blue text-white"
+                          : "text-silov-dark-gray hover:bg-gray-50 hover:text-foreground"
                       }`}
                     >
                       <span>Contact Us</span>
@@ -315,7 +328,7 @@ export function Header({ activePath }: HeaderProps) {
                           <SheetClose key={item.label} asChild>
                             <Link
                               href={item.href}
-                              className="block rounded-lg px-4 py-2.5 text-sm text-silov-dark-gray transition-colors hover:bg-silov-cream/50 hover:text-foreground"
+                              className="block rounded-lg px-4 py-2.5 text-sm text-silov-dark-gray transition-colors hover:bg-gray-50 hover:text-foreground"
                               onClick={closeMobileMenu}
                             >
                               {item.label}

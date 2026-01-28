@@ -36,12 +36,12 @@ export function ProductsHero() {
             efficiency and sustainability in energy management.
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 ">
           {categories.map((item) => (
             <button
               key={item.label}
               onClick={() => scrollToSection(item.href)}
-              className="group relative overflow-hidden rounded-lg border border-border/40 bg-gradient-to-br from-white to-gray-50/50 p-6 text-left transition-all hover:border-silov-black hover:shadow-lg hover:shadow-black/5"
+              className="group relative overflow-hidden rounded-lg border border-border p-6 text-left transition-all hover:border-silov-black hover:shadow-lg hover:shadow-black/5"
             >
               <div className="space-y-4">
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-silov-light-gray text-silov-black transition-transform group-hover:scale-110">
@@ -51,7 +51,7 @@ export function ProductsHero() {
                   {item.label}
                 </p>
               </div>
-              <div className="absolute bottom-0 left-0 h-1 w-0 bg-silov-black transition-all group-hover:w-full" />
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-silov-blue transition-all group-hover:w-full" />
             </button>
           ))}
         </div>

@@ -21,7 +21,7 @@ export function Contact() {
             placeholder="Your Product Requirements"
             className="min-h-[120px] rounded-2xl border-border/60 text-sm sm:text-base sm:min-h-[140px]"
           />
-          <Button className="h-12 w-full rounded-2xl bg-silov-black text-sm font-medium text-white transition-all hover:bg-silov-dark-gray sm:h-14 sm:text-base">
+          <Button className="h-12 w-full rounded-2xl bg-silov-blue text-sm font-medium text-white transition-all hover:bg-silov-blue-dark sm:h-14 sm:text-base">
             Submit Your Requirements
           </Button>
         </form>

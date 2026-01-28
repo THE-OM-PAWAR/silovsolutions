@@ -7,38 +7,38 @@ const clients = [
   {
     name: "IIT Goa",
     src: "/Silovhome/indian_institute_of_technology_goa_logo.svg-Yg2q8zNllgCGkqJN.avif",
-    width: 140,
-    height: 140,
+    width: 180,
+    height: 180,
   },
   {
     name: "IIT Bhubaneswar",
     src: "/Silovhome/indian_institute_of_technology_bhubaneswar_logo.svg-Yleq3Jwlx6I04qGj.avif",
-    width: 140,
-    height: 140,
+    width: 180,
+    height: 180,
   },
   {
     name: "IIT Roorkee",
     src: "/Silovhome/indian_institute_of_technology_roorkee_logo-d957RLX631Trrrya.svg",
-    width: 140,
-    height: 140,
+    width: 180,
+    height: 180,
   },
   {
     name: "NIT Meghalaya",
     src: "/Silovhome/national_institute_of_technology-_meghalaya_logo-YanqrLNn4MHxn3OV.png",
-    width: 140,
-    height: 140,
+    width: 180,
+    height: 180,
   },
   {
     name: "IIT Patna",
     src: "/Silovhome/459265-1600x960347050-iit-patna-phd-admission-2023-application-form-exam-date-eligibility-removebg-preview-A1aB4GjergtbwPzB.avif",
-    width: 140,
-    height: 140,
+    width: 180,
+    height: 180,
   },
   {
     name: "NIT Jaipur",
     src: "/Silovhome/mnit_logo-A85Eoxb5WRion2O7.avif",
-    width: 140,
-    height: 140,
+    width: 180,
+    height: 180,
   },
 ];
 
@@ -174,7 +174,7 @@ export function Clientele() {
                 key={`${client.name}-${index}`}
                 className="group flex flex-shrink-0 flex-col items-center gap-4 transition-all"
               >
-                <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-silov-cream p-4 transition-all group-hover:bg-silov-lime/20 group-hover:scale-105 sm:h-28 sm:w-28">
+                <div className="flex h-32 w-32 items-center justify-center rounded-2xl bg-white border border-border/40 p-5 transition-all group-hover:border-silov-blue group-hover:scale-105 sm:h-40 sm:w-40">
                   <Image
                     src={client.src}
                     alt={client.name}
@@ -184,7 +184,7 @@ export function Clientele() {
                     draggable={false}
                   />
                 </div>
-                <p className="text-xs font-semibold text-muted-foreground transition-colors group-hover:text-foreground sm:text-sm">
+                <p className="text-sm font-semibold text-muted-foreground transition-colors group-hover:text-foreground sm:text-base">
                   {client.name}
                 </p>
               </div>

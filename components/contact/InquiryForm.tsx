@@ -37,7 +37,7 @@ export function InquiryForm() {
               placeholder="Message / Requirements"
               className="min-h-[140px] rounded-md border-border/60 sm:col-span-2"
             />
-            <Button className="h-11 rounded-md bg-silov-black font-medium text-white hover:bg-silov-dark-gray sm:col-span-2">
+            <Button className="h-11 rounded-md bg-silov-blue font-medium text-white hover:bg-silov-blue-dark sm:col-span-2">
               Send Message
             </Button>
           </form>

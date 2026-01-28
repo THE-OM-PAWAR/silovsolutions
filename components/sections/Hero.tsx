@@ -16,7 +16,7 @@ export function Hero() {
       categoryDescription: category.description,
     }));
 
-  const colors = ["bg-silov-lime", "bg-silov-coral", "bg-silov-teal", "bg-silov-purple"];
+  const colors = ["bg-gray-200", "bg-gray-200", "bg-gray-200", "bg-gray-200"];
 
   return (
     <section
@@ -41,7 +41,7 @@ export function Hero() {
               Cutting-edge technology for Power System Emulators, Power Conditioning Units, IoT Infrastructure and EV Ecosystem.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button className="h-12 rounded-full bg-silov-black px-8 text-sm font-medium text-white transition-all hover:bg-silov-dark-gray sm:h-14 sm:text-base">
+              <Button className="h-12 rounded-full bg-silov-blue px-8 text-sm font-medium text-white transition-all hover:bg-silov-blue-dark sm:h-14 sm:text-base">
                 Download Brochure
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

@@ -56,7 +56,7 @@ export function CategoryNav() {
               onClick={() => scrollToSection(item.href)}
               className={`whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
                 activeSection === item.href
-                  ? "bg-silov-black text-white"
+                  ? "bg-silov-blue text-white"
                   : "bg-gray-100 text-muted-foreground hover:bg-gray-200 hover:text-foreground"
               }`}
             >

@@ -195,7 +195,7 @@ export function TeamProfiles() {
                           <ul className="space-y-2 border-t border-border/40 p-4">
                             {member.awards.map((award, awardIndex) => (
                               <li key={awardIndex} className="flex items-start">
-                                <span className="mr-2 mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black"></span>
+                                <span className="mr-2 mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-blue"></span>
                                 <span className="text-sm font-normal text-silov-dark-gray">{award}</span>
                               </li>
                             ))}
@@ -229,7 +229,7 @@ export function TeamProfiles() {
                           <ul className="space-y-2 border-t border-border/40 p-4">
                             {member.publications.map((publication, pubIndex) => (
                               <li key={pubIndex} className="flex items-start">
-                                <span className="mr-2 mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black"></span>
+                                <span className="mr-2 mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-blue"></span>
                                 <span className="text-sm font-normal text-silov-dark-gray">{publication}</span>
                               </li>
                             ))}

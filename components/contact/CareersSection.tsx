@@ -40,7 +40,7 @@ export function CareersSection() {
             </label>
             <Input type="file" className="h-11 rounded-md border-border/60" />
           </div>
-          <Button className="h-11 w-full rounded-md bg-silov-black font-medium text-white hover:bg-silov-dark-gray">
+          <Button className="h-11 w-full rounded-md bg-silov-blue font-medium text-white hover:bg-silov-blue-dark">
             Submit Application
           </Button>
         </form>

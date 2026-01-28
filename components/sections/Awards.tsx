@@ -11,7 +11,7 @@ const awards = [
     description:
       "Acknowledging the groundbreaking work in renewable energy technology, particularly in developing cost-effective and efficient solutions for e-mobility.",
     image: "/recognition/images-4-ALp76oNvQDhOgjyk.avif",
-    color: "bg-silov-lime",
+    color: "bg-gray-200",
   },
   {
     title: "IEEE (Delhi) Technology",
@@ -20,7 +20,7 @@ const awards = [
     description:
       "Highlighting their technological expertise and contributions towards advancing cost-effective clean energy technologies that impact industries and communities globally.",
     image: "/recognition/images-5-m2WaLQ20zohQaXLL.png",
-    color: "bg-silov-purple",
+    color: "bg-gray-200",
   },
   {
     title: "Social Alpha Energy",
@@ -29,7 +29,7 @@ const awards = [
     description:
       "Recognizing the innovative, cost-effective renewable energy technologies, advancing accessibility and efficiency in clean energy.",
     image: "/recognition/social_alpha_logo-Yg2q09ezR5FLPbbP.avif",
-    color: "bg-silov-coral",
+    color: "bg-gray-200",
   },
   {
     title: "Clean Energy Int'l",
@@ -38,7 +38,7 @@ const awards = [
     description:
       "Incubated at CEIC TATA, highlighting their contribution to clean energy.",
     image: "/recognition/images-6-A85Eb4Wn70HDg7r8.avif",
-    color: "bg-silov-teal",
+    color: "bg-gray-200",
   },
 ];
 

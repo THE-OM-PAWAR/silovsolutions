@@ -22,7 +22,7 @@ export function CustomRequirement() {
             placeholder="Requirements"
             className="min-h-[120px] rounded-md border-border/60"
           />
-          <Button className="h-11 w-full rounded-md bg-silov-black font-medium text-white hover:bg-silov-dark-gray">
+          <Button className="h-11 w-full rounded-md bg-silov-blue font-medium text-white hover:bg-silov-blue-dark">
             Submit your query now
           </Button>
         </form>

@@ -13,10 +13,10 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       id={product.id}
-      className="rounded-lg border border-border/40 bg-white transition-shadow hover:shadow-md"
+      className="rounded-lg border border-border bg-white transition-shadow hover:shadow-md"
     >
-      <div className="grid gap-6 p-6 lg:grid-cols-[280px_1fr]">
-        <div className="overflow-hidden rounded-md border border-border/40 bg-zinc-50">
+      <div className="grid gap-6 p-0 lg:grid-cols-[280px_1fr]">
+        <div className="overflow-hidden rounded-md sm:rounded-b-none lg:rounded-b-md lg:rounded-b border border-border bg-zinc-50">
           <Image
             src={product.image}
             alt={product.name}
@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="space-y-5">
+        <div className="space-y-5 p-4">
           <div className="space-y-2">
             <h3 className="text-xl font-medium text-foreground sm:text-2xl">
               {product.name}
@@ -42,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <ul className="space-y-1.5 text-sm font-normal text-silov-dark-gray">
                 {[...product.specs, ...product.features].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black" />
+                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-blue" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -55,7 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
               <ul className="space-y-1.5 text-sm font-normal text-silov-dark-gray">
                 {product.useCases.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black" />
+                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-blue" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -63,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button asChild size="sm" className="h-9 rounded-md bg-black text-xs font-medium text-white hover:bg-silov-dark-gray">
+            <Button asChild size="sm" className="h-9 rounded-md bg-silov-blue text-xs font-medium text-white hover:bg-silov-blue-dark">
               <Link href="https://gem.gov.in" target="_blank">
                 Check on GEM
                 <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
