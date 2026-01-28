@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { Separator } from "../ui/separator";
 
 const team = [
   {
@@ -25,91 +25,33 @@ const team = [
 ];
 
 function TeamCard({ member }: { member: (typeof team)[0] }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
   return (
-    <div
-      className="flex h-full flex-col overflow-hidden rounded-[28px] bg-white shadow-lg cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
-      {/* Top Content Section */}
-      <div className="flex-1 space-y-2 p-6 sm:p-7">
-        <div>
-          <h3 className="text-lg font-bold leading-tight sm:text-xl">
-            {member.name}
-          </h3>
-          <p className="mt-2 text-xs font-medium text-silov-medium-gray sm:text-sm uppercase tracking-wide">
-            {member.role}
-          </p>
-        </div>
-        <div className="h-px bg-border/30" />
+    <article className="group flex h-full max-w-[280px] mx-auto flex-col overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-xl sm:max-w-none sm:mx-0">
+      {/* Photo */}
+      <div className="relative h-50 w-full aspect-square overflow-hidden bg-gray-100 sm:h-40">
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          sizes="(max-width: 640px) 280px, (max-width: 768px) 50vw, 240px"
+        />
       </div>
 
-      {/* Bottom Image Section - Flips */}
-      <div className="relative w-full aspect-square overflow-hidden rounded-b-[28px] bg-gray-100">
-        <div
-          className="relative h-full w-full transition-transform duration-500"
-          style={{
-            transformStyle: "preserve-3d",
-            transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-          }}
-        >
-          {/* Front - Image */}
-          <div
-            className="absolute h-full w-full"
-            style={{ backfaceVisibility: "hidden" }}
-          >
-            <Image
-              src={member.image}
-              alt={member.name}
-              fill
-              className="object-cover transition-all duration-300"
-            />
-          </div>
-
-          {/* Back - Info */}
-          <div
-            className="absolute h-full w-full bg-silov-black p-6 flex items-start"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateY(180deg)",
-            }}
-          >
-            {/* Decorative background pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                backgroundSize: '24px 24px'
-              }} />
-            </div>
-            
-            {/* Content */}
-            <div className="relative z-10 space-y-3">
-              {/* Role badge */}
-              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
-                <span className="text-xs font-semibold text-white/90 uppercase tracking-wider">
-                  {member.role}
-                </span>
-              </div>
-              
-              {/* Bio text */}
-              <div className="space-y-2">
-                <p className="text-base sm:text-lg font-light leading-relaxed text-white/95">
-                  {member.bio}
-                </p>
-              </div>
-              
-              {/* Decorative accent line */}
-              <div className="pt-1">
-                <div className="h-px w-10 bg-gradient-to-r from-white/40 to-transparent" />
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Info */}
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
+        <h3 className="text-base font-semibold leading-tight text-foreground sm:text-lg">
+          {member.name}
+        </h3>
+        <p className="mt-0.5 text-[11px] font-medium uppercase tracking-wider text-silov-medium-gray sm:text-xs">
+          {member.role}
+        </p>
+        <Separator className="my-2" />
+        <p className="mt-2 text-xs leading-relaxed text-silov-dark-gray line-clamp-3 sm:text-sm">
+          {member.bio}
+        </p>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -137,4 +79,3 @@ export function CoreTeam() {
     </section>
   );
 }
-
