@@ -252,41 +252,55 @@ export function Header({ activePath }: HeaderProps) {
                     </div>
                     
                     {productsOpen && (
-                      <div className="space-y-3 pl-3 pt-2">
-                        {productCategories.map((category) => (
-                          <div
-                            key={category.id}
-                            className="rounded-xl border border-border/40 bg-white p-4"
-                          >
-                            <SheetClose asChild>
-                              <Link
-                                href={`/products#${category.id}`}
-                                className="mb-3 flex items-center justify-between group"
-                                onClick={closeMobileMenu}
-                              >
-                                <h4 className="text-sm font-bold text-foreground">
-                                  {category.title}
-                                </h4>
-                                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                              </Link>
-                            </SheetClose>
-                            <ul className="space-y-1.5">
-                              {category.products.map((product) => (
-                                <li key={product.id}>
-                                  <SheetClose asChild>
-                                    <Link
-                                      href={`/products#${product.id}`}
-                                      className="block text-sm text-silov-dark-gray hover:text-foreground transition-colors py-1"
-                                      onClick={closeMobileMenu}
-                                    >
-                                      {product.name}
-                                    </Link>
-                                  </SheetClose>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                      <div className="space-y-0 px-4 ">
+                        {productCategories.map((category, idx) => {
+                          // Determine classes for conditional rounding
+                          const isFirst = idx === 0;
+                          const isLast = idx === productCategories.length - 1;
+                          let rounding = "";
+                          if (isFirst) {
+                            rounding = "rounded-t-xl rounded-b-none";
+                          } else if (isLast) {
+                            rounding = "rounded-none rounded-b-xl border-t-0";
+                          } else {
+                            rounding = "rounded-none border-t-0";
+                          }
+
+                          return (
+                            <div
+                              key={category.id}
+                              className={`${rounding} border border-border bg-white p-4`}
+                            >
+                              <SheetClose asChild>
+                                <Link
+                                  href={`/products#${category.id}`}
+                                  className="mb-3 flex items-center justify-between group"
+                                  onClick={closeMobileMenu}
+                                >
+                                  <h4 className="text-sm font-bold text-foreground">
+                                    {category.title}
+                                  </h4>
+                                  <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                                </Link>
+                              </SheetClose>
+                              <ul>
+                                {category.products.map((product) => (
+                                  <li key={product.id}>
+                                    <SheetClose asChild>
+                                      <Link
+                                        href={`/products#${product.id}`}
+                                        className="block text-sm text-silov-dark-gray hover:text-foreground transition-colors py-1"
+                                        onClick={closeMobileMenu}
+                                      >
+                                        {product.name}
+                                      </Link>
+                                    </SheetClose>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
