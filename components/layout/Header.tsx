@@ -3,13 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ChevronDown, Zap } from "lucide-react";
+import { Menu, ChevronDown, Zap, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -21,31 +20,7 @@ import {
   SheetClose,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-const products = [
-  { label: "1 kW Solar PV Emulator", href: "/products#solar-pv-emulator-1kw" },
-  { label: "2KW Solar PV Emulator", href: "/products#solar-pv-emulator-2kw" },
-  { label: "Wind Energy Conversion System", href: "/products#wecs" },
-  { label: "Datalogger", href: "/products#smart-data-logger" },
-  { label: "IV Curve Tracer", href: "/products#iv-curve-tracer" },
-  {
-    label: "Unidirectional DC-DC Converter",
-    href: "/products#unidirectional-dc-dc-converter",
-  },
-  { label: "Bidirectional Invertor", href: "/products#bidirectional-inverter" },
-  {
-    label: "Bidirectional DC-DC Convertor",
-    href: "/products#bidirectional-dc-dc-converter",
-  },
-  {
-    label: "Grid Synchronized Inverter",
-    href: "/products#grid-sync-inverter",
-  },
-  { label: "EV Emulator", href: "/products#ev-emulator" },
-  { label: "DC Fast EV Charger", href: "/products#dc-fast-ev-charger" },
-  { label: "Smart AC EVSE", href: "/products#smart-ac-evse" },
-  { label: "Custom Products", href: "/products#custom-requirements" },
-];
+import { productCategories } from "@/data/products";
 
 const contactMenu = [
   { label: "Contact Us for Queries", href: "/contact#inquiry" },
@@ -74,20 +49,20 @@ export function Header({ activePath }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/95 backdrop-blur-md">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6 sm:h-18 sm:px-8">
         <Link 
           href="/#home" 
-          className="flex items-center gap-2.5 text-base font-normal transition-opacity hover:opacity-80 sm:text-lg"
+          className="flex items-center gap-2.5 text-base font-bold transition-opacity hover:opacity-80 sm:text-lg"
         >
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-sm bg-black text-white sm:h-9 sm:w-9">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-black text-white sm:h-10 sm:w-10">
             <Zap className="h-4 w-4 sm:h-5 sm:w-5" />
           </span>
           <span className="text-foreground tracking-tight">Silov Solutions</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-10 text-sm font-normal text-muted-foreground lg:flex">
+        <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground lg:flex">
           <Link 
             href="/#home" 
             className={`transition-colors ${
@@ -110,19 +85,38 @@ export function Header({ activePath }: HeaderProps) {
               Products
             </DropdownMenuTrigger>
             <DropdownMenuContent 
-              className="w-72 border-border/40 bg-white shadow-lg"
-              align="start"
+              className="w-[700px] border-border/40 bg-white shadow-xl rounded-2xl p-4"
+              align="end"
+              sideOffset={8}
             >
-              <div className="max-h-[60vh] overflow-y-auto p-1">
-                {products.map((item) => (
-                  <DropdownMenuItem key={item.label} asChild>
+              <div className="grid grid-cols-2 gap-4">
+                {productCategories.map((category) => (
+                  <div
+                    key={category.id}
+                    className="rounded-xl border border-border/40 bg-silov-cream/30 p-4 transition-all hover:bg-silov-cream hover:border-border"
+                  >
                     <Link
-                      href={item.href}
-                      className="block cursor-pointer rounded-sm px-3 py-2 text-sm font-normal text-foreground transition-colors hover:bg-muted/50"
+                      href={`/products#${category.id}`}
+                      className="mb-3 flex items-center justify-between group"
                     >
-                      {item.label}
+                      <h3 className="text-sm font-bold text-foreground group-hover:text-silov-black">
+                        {category.title}
+                      </h3>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0" />
                     </Link>
-                  </DropdownMenuItem>
+                    <ul className="space-y-1.5">
+                      {category.products.map((product) => (
+                        <li key={product.id}>
+                          <Link
+                            href={`/products#${product.id}`}
+                            className="block text-xs text-muted-foreground hover:text-foreground transition-colors py-1 hover:pl-1"
+                          >
+                            • {product.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
             </DropdownMenuContent>
@@ -150,21 +144,19 @@ export function Header({ activePath }: HeaderProps) {
               Contact Us
             </DropdownMenuTrigger>
             <DropdownMenuContent 
-              className="w-56 border-border/40 bg-white shadow-lg"
-              align="start"
+              className="w-56 border-border/40 bg-white shadow-xl rounded-2xl p-2"
+              align="end"
+              sideOffset={8}
             >
-              <div className="p-1">
-                {contactMenu.map((item) => (
-                  <DropdownMenuItem key={item.label} asChild>
-                    <Link
-                      href={item.href}
-                      className="block cursor-pointer rounded-sm px-3 py-2 text-sm font-normal text-foreground transition-colors hover:bg-muted/50"
-                    >
-                      {item.label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </div>
+              {contactMenu.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="block cursor-pointer rounded-xl px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-silov-cream"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -175,7 +167,7 @@ export function Header({ activePath }: HeaderProps) {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-9 w-9 lg:hidden"
+              className="h-9 w-9 lg:hidden rounded-2xl"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
@@ -183,29 +175,34 @@ export function Header({ activePath }: HeaderProps) {
           </SheetTrigger>
           <SheetContent 
             side="right" 
-            className="w-full max-w-sm border-l border-border/40 bg-white p-0 sm:max-w-md"
+            className="w-full max-w-sm border-l border-border/40 bg-white p-0 sm:max-w-md rounded-l-3xl"
           >
             <div className="flex h-full flex-col">
-              {/* Header with proper title for accessibility */}
-              <SheetHeader className="border-b border-border/40 px-6 py-4">
-                <SheetTitle className="text-left text-base font-normal text-foreground">
-                  Navigation
-                </SheetTitle>
+              {/* Header */}
+              <SheetHeader className="border-b border-border/40 px-6 py-6">
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-white">
+                    <Zap className="h-5 w-5" />
+                  </span>
+                  <SheetTitle className="text-left text-base font-bold text-foreground">
+                    Silov Solutions
+                  </SheetTitle>
+                </div>
                 <SheetDescription className="sr-only">
                   Main navigation menu with links to all pages
                 </SheetDescription>
               </SheetHeader>
 
               {/* Navigation Links */}
-              <nav className="flex-1 overflow-y-auto px-4 py-4">
-                <div className="space-y-1">
+              <nav className="flex-1 overflow-y-auto px-5 py-6">
+                <div className="space-y-2">
                   <SheetClose asChild>
                     <Link
                       href="/#home"
-                      className={`block rounded-sm px-4 py-3 text-base font-normal transition-colors ${
+                      className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                         isHome
-                          ? "bg-silov-light-gray text-foreground"
-                          : "text-muted-foreground hover:bg-silov-light-gray/50 hover:text-foreground"
+                          ? "bg-silov-cream text-foreground"
+                          : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
                       }`}
                       onClick={closeMobileMenu}
                     >
@@ -213,35 +210,69 @@ export function Header({ activePath }: HeaderProps) {
                     </Link>
                   </SheetClose>
 
-                  {/* Products Accordion */}
-                  <div className="space-y-1">
-                    <button
-                      onClick={() => setProductsOpen(!productsOpen)}
-                      className={`flex w-full items-center justify-between rounded-sm px-4 py-3 text-left text-base font-normal transition-colors ${
-                        isProducts
-                          ? "bg-silov-light-gray text-foreground"
-                          : "text-muted-foreground hover:bg-silov-light-gray/50 hover:text-foreground"
-                      }`}
-                    >
-                      <span>Products</span>
-                      <ChevronDown
-                        className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 ${
-                          productsOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
+                  {/* Products Section */}
+                  <div className="space-y-2">
+                    <div className="flex gap-2">
+                      <SheetClose asChild className="flex-1">
+                        <Link
+                          href="/products"
+                          className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                            isProducts
+                              ? "bg-silov-cream text-foreground"
+                              : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
+                          }`}
+                          onClick={closeMobileMenu}
+                        >
+                          Products
+                        </Link>
+                      </SheetClose>
+                      <button
+                        onClick={() => setProductsOpen(!productsOpen)}
+                        className="rounded-xl px-3 py-3 text-silov-dark-gray hover:bg-silov-cream/50 transition-colors"
+                      >
+                        <ChevronDown
+                          className={`h-5 w-5 transition-transform duration-200 ${
+                            productsOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                    
                     {productsOpen && (
-                      <div className="space-y-1 overflow-hidden border-l-2 border-border/40 pl-4 ml-4 py-1">
-                        {products.map((item) => (
-                          <SheetClose key={item.label} asChild>
-                            <Link
-                              href={item.href}
-                              className="block rounded-sm px-4 py-2 text-sm font-normal text-muted-foreground transition-colors hover:bg-silov-light-gray/50 hover:text-foreground"
-                              onClick={closeMobileMenu}
-                            >
-                              {item.label}
-                            </Link>
-                          </SheetClose>
+                      <div className="space-y-3 pl-3 pt-2">
+                        {productCategories.map((category) => (
+                          <div
+                            key={category.id}
+                            className="rounded-xl border border-border/40 bg-silov-cream/30 p-4"
+                          >
+                            <SheetClose asChild>
+                              <Link
+                                href={`/products#${category.id}`}
+                                className="mb-3 flex items-center justify-between group"
+                                onClick={closeMobileMenu}
+                              >
+                                <h4 className="text-sm font-bold text-foreground">
+                                  {category.title}
+                                </h4>
+                                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                              </Link>
+                            </SheetClose>
+                            <ul className="space-y-1.5">
+                              {category.products.map((product) => (
+                                <li key={product.id}>
+                                  <SheetClose asChild>
+                                    <Link
+                                      href={`/products#${product.id}`}
+                                      className="block text-sm text-silov-dark-gray hover:text-foreground transition-colors py-1"
+                                      onClick={closeMobileMenu}
+                                    >
+                                      {product.name}
+                                    </Link>
+                                  </SheetClose>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
                       </div>
                     )}
@@ -250,10 +281,10 @@ export function Header({ activePath }: HeaderProps) {
                   <SheetClose asChild>
                     <Link
                       href="/about"
-                      className={`block rounded-sm px-4 py-3 text-base font-normal transition-colors ${
+                      className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                         isAbout
-                          ? "bg-silov-light-gray text-foreground"
-                          : "text-muted-foreground hover:bg-silov-light-gray/50 hover:text-foreground"
+                          ? "bg-silov-cream text-foreground"
+                          : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
                       }`}
                       onClick={closeMobileMenu}
                     >
@@ -261,30 +292,30 @@ export function Header({ activePath }: HeaderProps) {
                     </Link>
                   </SheetClose>
 
-                  {/* Contact Accordion */}
-                  <div className="space-y-1">
+                  {/* Contact Section */}
+                  <div className="space-y-2">
                     <button
                       onClick={() => setContactOpen(!contactOpen)}
-                      className={`flex w-full items-center justify-between rounded-sm px-4 py-3 text-left text-base font-normal transition-colors ${
+                      className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-base font-medium transition-colors ${
                         isContact
-                          ? "bg-silov-light-gray text-foreground"
-                          : "text-muted-foreground hover:bg-silov-light-gray/50 hover:text-foreground"
+                          ? "bg-silov-cream text-foreground"
+                          : "text-silov-dark-gray hover:bg-silov-cream/50 hover:text-foreground"
                       }`}
                     >
                       <span>Contact Us</span>
                       <ChevronDown
-                        className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 ${
+                        className={`h-5 w-5 flex-shrink-0 transition-transform duration-200 ${
                           contactOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                     {contactOpen && (
-                      <div className="space-y-1 overflow-hidden border-l-2 border-border/40 pl-4 ml-4 py-1">
+                      <div className="space-y-1 pl-3 pt-1">
                         {contactMenu.map((item) => (
                           <SheetClose key={item.label} asChild>
                             <Link
                               href={item.href}
-                              className="block rounded-sm px-4 py-2 text-sm font-normal text-muted-foreground transition-colors hover:bg-silov-light-gray/50 hover:text-foreground"
+                              className="block rounded-lg px-4 py-2.5 text-sm text-silov-dark-gray transition-colors hover:bg-silov-cream/50 hover:text-foreground"
                               onClick={closeMobileMenu}
                             >
                               {item.label}

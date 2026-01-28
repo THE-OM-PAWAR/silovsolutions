@@ -1,21 +1,27 @@
+"use client";
+
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
 
 const awards = [
   {
     title: "INAE Startup Innovation",
-    subtitle: "Award for Clean Mobility,",
+    subtitle: "Award for Clean Mobility",
     year: "2022",
     description:
       "Acknowledging the groundbreaking work in renewable energy technology, particularly in developing cost-effective and efficient solutions for e-mobility.",
     image: "/recognition/images-4-ALp76oNvQDhOgjyk.avif",
+    color: "bg-silov-lime",
   },
   {
     title: "IEEE (Delhi) Technology",
-    subtitle: "Startup of the Year,",
+    subtitle: "Startup of the Year",
     year: "2020",
     description:
       "Highlighting their technological expertise and contributions towards advancing cost-effective clean energy technologies that impact industries and communities globally.",
     image: "/recognition/images-5-m2WaLQ20zohQaXLL.png",
+    color: "bg-silov-purple",
   },
   {
     title: "Social Alpha Energy",
@@ -24,6 +30,7 @@ const awards = [
     description:
       "Recognizing the innovative, cost-effective renewable energy technologies, advancing accessibility and efficiency in clean energy.",
     image: "/recognition/social_alpha_logo-Yg2q09ezR5FLPbbP.avif",
+    color: "bg-silov-coral",
   },
   {
     title: "Clean Energy Int'l",
@@ -32,15 +39,64 @@ const awards = [
     description:
       "Incubated at CEIC TATA, highlighting their contribution to clean energy.",
     image: "/recognition/images-6-A85Eb4Wn70HDg7r8.avif",
+    color: "bg-silov-teal",
   },
 ];
 
 export function Awards() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [isHorizontalScroll, setIsHorizontalScroll] = useState(false);
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setIsHorizontalScroll(false);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setStartY(e.pageY);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const y = e.pageY;
+    const walkX = Math.abs(x - startX);
+    const walkY = Math.abs(y - startY);
+    
+    // Determine scroll direction on first significant movement
+    if (!isHorizontalScroll && (walkX > 5 || walkY > 5)) {
+      setIsHorizontalScroll(walkX > walkY);
+    }
+    
+    // Only prevent default and scroll horizontally if it's a horizontal scroll
+    if (isHorizontalScroll) {
+      e.preventDefault();
+      const walk = (x - startX) * 2;
+      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setIsHorizontalScroll(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+    setIsHorizontalScroll(false);
+  };
+
   return (
-    <section className="bg-silov-light-gray py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto w-full max-w-6xl space-y-12 px-4 sm:px-6 lg:space-y-16">
-        <div className="space-y-6 text-left">
-          <h2 className="text-4xl font-normal leading-[1.15] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-6xl">
+    <section className="bg-white py-12 sm:py-16 lg:py-20 min-h-screen flex items-center">
+      <div className="mx-auto w-full max-w-7xl space-y-10 px-6 sm:px-8 lg:space-y-12">
+        <div className="space-y-5 text-left">
+          <h2 className="text-3xl font-bold leading-[1.1] tracking-[-0.025em] text-foreground sm:text-4xl lg:text-5xl">
             Major Recognitions
           </h2>
           <p className="max-w-3xl text-base font-normal leading-relaxed text-silov-dark-gray sm:text-lg">
@@ -49,35 +105,80 @@ export function Awards() {
             leading academic and entrepreneurial organizations.
           </p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+
+        {/* Scrollable Cards */}
+        <div
+          ref={scrollContainerRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory ${
+            isDragging && isHorizontalScroll ? "cursor-grabbing" : "cursor-grab"
+          }`}
+          style={{
+            scrollBehavior: isDragging ? "auto" : "smooth",
+            WebkitOverflowScrolling: "touch",
+            touchAction: "pan-y pinch-zoom",
+            overscrollBehaviorX: "contain",
+          }}
+        >
           {awards.map((award) => (
             <div
               key={`${award.title}-${award.year}`}
-              className="group flex flex-col rounded-sm border border-border/40 bg-white p-6 transition-all hover:border-border hover:shadow-sm sm:p-8"
+              className="group relative flex-shrink-0 w-[70vw] sm:w-[280px] lg:w-[300px] h-[420px] sm:h-[440px] overflow-hidden rounded-[28px] bg-white shadow-lg transition-all hover:shadow-2xl hover:scale-[1.02] snap-center snap-always"
             >
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-sm bg-silov-light-gray transition-colors group-hover:bg-silov-medium-gray/10 sm:h-24 sm:w-24">
-                <Image
-                  src={award.image}
-                  alt={award.title}
-                  width={112}
-                  height={112}
-                  className="h-14 w-14 object-contain grayscale transition-all group-hover:grayscale-0 sm:h-16 sm:w-16"
-                />
-              </div>
-              <div className="mb-4 flex-1 space-y-3">
-                <div className="space-y-1">
-                  <h3 className="text-lg font-normal leading-tight text-foreground sm:text-xl">
+              {/* Top Section - Colored Header */}
+              <div className={`relative ${award.color} h-[45%] p-6 sm:p-7 flex flex-col`}>
+                {/* Badges */}
+                <div className="flex gap-2 mb-2">
+                  <span className="bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-semibold text-silov-black uppercase tracking-wide">
+                    {award.year}
+                  </span>
+                  <span className="bg-white/95 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-semibold text-silov-black uppercase tracking-wide">
+                    Award
+                  </span>
+                </div>
+
+                {/* Circular Icon - Top Right */}
+                <div className="absolute top-5 right-5 sm:top-6 sm:right-6 h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-white flex items-center justify-center shadow-md">
+                  <Image
+                    src={award.image}
+                    alt={award.title}
+                    width={56}
+                    height={56}
+                    className="h-8 w-8 sm:h-9 sm:w-9 object-contain"
+                  />
+                </div>
+
+                {/* Title and Description */}
+                <div className="flex-1 flex flex-col justify-center space-y-0.5">
+                  <h3 className="text-xl sm:text-2xl font-bold leading-tight text-silov-black">
                     {award.title}
                   </h3>
-                  <p className="text-base font-normal text-foreground sm:text-lg">
+                  <p className="text-sm sm:text-base font-medium leading-relaxed text-silov-dark-gray">
                     {award.subtitle}
                   </p>
                 </div>
-                <p className="text-sm font-normal text-muted-foreground">{award.year}</p>
               </div>
-              <p className="text-sm font-normal leading-relaxed text-silov-dark-gray">
-                {award.description}
-              </p>
+
+              {/* Bottom Section - Image */}
+              <div className={`relative h-[55%] ${award.color} overflow-hidden rounded-b-[28px] p-1.5`}>
+                <div className="relative h-full w-full flex items-center justify-center p-6 bg-white rounded-[24px] shadow-lg">
+                  <img
+                    src={award.image}
+                    alt={award.title}
+                    className="rounded-b-3xl object-center w-full h-full object-contain"
+                  />
+                </div>
+                {/* Read More Button */}
+                <div className="absolute bottom-4 left-4">
+                  <button className="group/btn bg-white/95 backdrop-blur-sm hover:bg-white rounded-full px-4 py-2 flex items-center gap-2 transition-all shadow-md hover:shadow-lg border border-silov-black/10">
+                    <span className="text-xs font-semibold text-silov-black sm:text-sm">Read More</span>
+                    <ArrowRight className="h-3.5 w-3.5 text-silov-black transition-transform group-hover/btn:translate-x-1 sm:h-4 sm:w-4" />
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>

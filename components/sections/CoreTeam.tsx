@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 const team = [
   {
@@ -21,12 +24,101 @@ const team = [
   },
 ];
 
+function TeamCard({ member }: { member: (typeof team)[0] }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div
+      className="flex h-full flex-col overflow-hidden rounded-[28px] bg-white shadow-lg cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      {/* Top Content Section */}
+      <div className="flex-1 space-y-2 p-6 sm:p-7">
+        <div>
+          <h3 className="text-lg font-bold leading-tight sm:text-xl">
+            {member.name}
+          </h3>
+          <p className="mt-2 text-xs font-medium text-silov-medium-gray sm:text-sm uppercase tracking-wide">
+            {member.role}
+          </p>
+        </div>
+        <div className="h-px bg-border/30" />
+      </div>
+
+      {/* Bottom Image Section - Flips */}
+      <div className="relative w-full aspect-square overflow-hidden rounded-b-[28px] bg-gray-100">
+        <div
+          className="relative h-full w-full transition-transform duration-500"
+          style={{
+            transformStyle: "preserve-3d",
+            transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          }}
+        >
+          {/* Front - Image */}
+          <div
+            className="absolute h-full w-full"
+            style={{ backfaceVisibility: "hidden" }}
+          >
+            <Image
+              src={member.image}
+              alt={member.name}
+              fill
+              className="object-cover transition-all duration-300"
+            />
+          </div>
+
+          {/* Back - Info */}
+          <div
+            className="absolute h-full w-full bg-silov-black p-6 flex items-start"
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+            }}
+          >
+            {/* Decorative background pattern */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                backgroundSize: '24px 24px'
+              }} />
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10 space-y-3">
+              {/* Role badge */}
+              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                <span className="text-xs font-semibold text-white/90 uppercase tracking-wider">
+                  {member.role}
+                </span>
+              </div>
+              
+              {/* Bio text */}
+              <div className="space-y-2">
+                <p className="text-base sm:text-lg font-light leading-relaxed text-white/95">
+                  {member.bio}
+                </p>
+              </div>
+              
+              {/* Decorative accent line */}
+              <div className="pt-1">
+                <div className="h-px w-10 bg-gradient-to-r from-white/40 to-transparent" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function CoreTeam() {
   return (
-    <section className="bg-silov-light-gray py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto w-full max-w-6xl space-y-12 px-4 sm:px-6 lg:space-y-16">
-        <div className="space-y-6 text-left">
-          <h2 className="text-4xl font-normal leading-[1.15] tracking-[-0.02em] text-foreground sm:text-5xl lg:text-6xl">
+    <section className="bg-silov-cream py-12 sm:py-16 lg:py-20 min-h-screen flex items-center">
+      <div className="mx-auto w-full max-w-7xl space-y-10 px-6 sm:px-8 lg:space-y-12">
+        <div className="space-y-5 text-left">
+          <h2 className="text-3xl font-bold leading-[1.1] tracking-[-0.025em] text-foreground sm:text-4xl lg:text-5xl">
             Our Core Team
           </h2>
           <p className="max-w-3xl text-base font-normal leading-relaxed text-silov-dark-gray sm:text-lg">
@@ -36,34 +128,9 @@ export function CoreTeam() {
             energy sources focused on India.
           </p>
         </div>
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:gap-12">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-8">
           {team.map((member) => (
-            <div
-              key={member.name}
-              className="space-y-5"
-            >
-              <div className="flex items-start gap-4">
-                <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-white sm:h-20 sm:w-20">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover grayscale"
-                  />
-                </div>
-                <div className="min-w-0 flex-1 pt-1">
-                  <p className="text-base font-normal text-foreground sm:text-lg">
-                    {member.name}
-                  </p>
-                  <p className="text-sm font-normal text-muted-foreground sm:text-base">
-                    {member.role}
-                  </p>
-                </div>
-              </div>
-              <p className="text-sm font-normal leading-relaxed text-silov-dark-gray sm:text-base">
-                {member.bio}
-              </p>
-            </div>
+            <TeamCard key={member.name} member={member} />
           ))}
         </div>
       </div>
