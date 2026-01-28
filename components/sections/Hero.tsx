@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { productCategories } from "@/data/products";
-import { useRef, useState } from "react";
 import { Button } from "../ui/button";
 
 export function Hero() {
@@ -16,54 +15,6 @@ export function Hero() {
       categoryId: category.id,
       categoryDescription: category.description,
     }));
-
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [startY, setStartY] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [isHorizontalScroll, setIsHorizontalScroll] = useState(false);
-
-  // Mouse drag handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollContainerRef.current) return;
-    setIsDragging(true);
-    setIsHorizontalScroll(false);
-    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-    setStartY(e.pageY);
-    setScrollLeft(scrollContainerRef.current.scrollLeft);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollContainerRef.current) return;
-    
-    const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const y = e.pageY;
-    const walkX = Math.abs(x - startX);
-    const walkY = Math.abs(y - startY);
-    
-    // Determine scroll direction on first significant movement
-    if (!isHorizontalScroll && (walkX > 5 || walkY > 5)) {
-      setIsHorizontalScroll(walkX > walkY);
-    }
-    
-    // Only prevent default and scroll horizontally if it's a horizontal scroll
-    if (isHorizontalScroll) {
-      e.preventDefault();
-      const walk = (x - startX) * 2;
-      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    setIsHorizontalScroll(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-    setIsHorizontalScroll(false);
-  };
 
   const colors = ["bg-silov-lime", "bg-silov-coral", "bg-silov-teal", "bg-silov-purple"];
 
@@ -99,19 +50,9 @@ export function Hero() {
         </div>
         {/* Scrollable Carousel */}
         <div
-          ref={scrollContainerRef}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 mt-3 snap-x snap-mandatory ${
-            isDragging && isHorizontalScroll ? "cursor-grabbing" : "cursor-grab"
-          }`}
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 mt-3 snap-x snap-mandatory"
           style={{
-            scrollBehavior: isDragging ? "auto" : "smooth",
-            WebkitOverflowScrolling: "touch",
-            touchAction: "pan-y pinch-zoom",
-            overscrollBehaviorX: "contain",
+            scrollBehavior: "smooth",
           }}
         >
           {categoryCards.map((category, index) => (

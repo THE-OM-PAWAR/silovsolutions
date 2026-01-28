@@ -13,74 +13,74 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div
       id={product.id}
-      className="rounded-sm border border-border/40 bg-white"
+      className="rounded-lg border border-border/40 bg-white transition-shadow hover:shadow-md"
     >
-      <div className="grid gap-8 p-8 lg:grid-cols-[320px_1fr] lg:gap-10">
-        <div className="overflow-hidden rounded-sm border border-border/40 bg-zinc-50">
+      <div className="grid gap-6 p-6 lg:grid-cols-[280px_1fr]">
+        <div className="overflow-hidden rounded-md border border-border/40 bg-zinc-50">
           <Image
             src={product.image}
             alt={product.name}
-            width={640}
-            height={420}
+            width={560}
+            height={380}
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="space-y-6">
-          <div className="space-y-3">
-            <h3 className="text-2xl font-normal text-foreground sm:text-3xl">
+        <div className="space-y-5">
+          <div className="space-y-2">
+            <h3 className="text-xl font-medium text-foreground sm:text-2xl">
               {product.name}
             </h3>
-            <p className="text-base font-normal leading-relaxed text-silov-dark-gray">
+            <p className="text-sm font-normal leading-relaxed text-silov-dark-gray">
               {product.description}
             </p>
           </div>
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="space-y-3">
-              <p className="text-sm font-normal uppercase tracking-[0.1em] text-muted-foreground">
-                Key Features & Technical Specifications
+          <div className="grid gap-5 lg:grid-cols-2">
+            <div className="space-y-2">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Specifications & Features
               </p>
-              <ul className="space-y-2 text-sm font-normal text-silov-dark-gray">
+              <ul className="space-y-1.5 text-sm font-normal text-silov-dark-gray">
                 {[...product.specs, ...product.features].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black" />
+                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="space-y-3">
-              <p className="text-sm font-normal uppercase tracking-[0.1em] text-muted-foreground">
-                Key Experiments & Use Cases
+            <div className="space-y-2">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Use Cases
               </p>
-              <ul className="space-y-2 text-sm font-normal text-silov-dark-gray">
+              <ul className="space-y-1.5 text-sm font-normal text-silov-dark-gray">
                 {product.useCases.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black" />
+                    <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button asChild className="h-11 rounded-sm bg-black text-sm font-normal text-white hover:bg-silov-dark-gray">
+          <div className="flex flex-wrap gap-2">
+            <Button asChild size="sm" className="h-9 rounded-md bg-black text-xs font-medium text-white hover:bg-silov-dark-gray">
               <Link href="https://gem.gov.in" target="_blank">
-                Check it on GEM
-                <ExternalLink className="ml-2 h-4 w-4" />
+                Check on GEM
+                <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" className="h-11 rounded-sm text-sm font-normal">
+            <Button asChild size="sm" variant="outline" className="h-9 rounded-md text-xs font-medium">
               <Link
                 href="mailto:silov.solutions@gmail.com?subject=Brochure%20Request"
               >
-                Download Brochure
-                <FileDown className="ml-2 h-4 w-4" />
+                Brochure
+                <FileDown className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
-            <Button asChild variant="secondary" className="h-11 rounded-sm text-sm font-normal">
+            <Button asChild size="sm" variant="secondary" className="h-9 rounded-md text-xs font-medium">
               <Link href="#custom-requirements">
-                Contact Us Directly
-                <Mail className="ml-2 h-4 w-4" />
+                Contact
+                <Mail className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
           </div>

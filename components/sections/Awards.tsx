@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { useRef, useState } from "react";
 
 const awards = [
   {
@@ -44,54 +43,6 @@ const awards = [
 ];
 
 export function Awards() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [startY, setStartY] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [isHorizontalScroll, setIsHorizontalScroll] = useState(false);
-
-  // Mouse drag handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollContainerRef.current) return;
-    setIsDragging(true);
-    setIsHorizontalScroll(false);
-    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-    setStartY(e.pageY);
-    setScrollLeft(scrollContainerRef.current.scrollLeft);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollContainerRef.current) return;
-    
-    const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const y = e.pageY;
-    const walkX = Math.abs(x - startX);
-    const walkY = Math.abs(y - startY);
-    
-    // Determine scroll direction on first significant movement
-    if (!isHorizontalScroll && (walkX > 5 || walkY > 5)) {
-      setIsHorizontalScroll(walkX > walkY);
-    }
-    
-    // Only prevent default and scroll horizontally if it's a horizontal scroll
-    if (isHorizontalScroll) {
-      e.preventDefault();
-      const walk = (x - startX) * 2;
-      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    setIsHorizontalScroll(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-    setIsHorizontalScroll(false);
-  };
-
   return (
     <section className="bg-white py-12 sm:py-16 lg:py-20 min-h-screen flex items-center">
       <div className="mx-auto w-full max-w-7xl space-y-10 px-6 sm:px-8 lg:space-y-12">
@@ -108,19 +59,9 @@ export function Awards() {
 
         {/* Scrollable Cards */}
         <div
-          ref={scrollContainerRef}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory ${
-            isDragging && isHorizontalScroll ? "cursor-grabbing" : "cursor-grab"
-          }`}
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
           style={{
-            scrollBehavior: isDragging ? "auto" : "smooth",
-            WebkitOverflowScrolling: "touch",
-            touchAction: "pan-y pinch-zoom",
-            overscrollBehaviorX: "contain",
+            scrollBehavior: "smooth",
           }}
         >
           {awards.map((award) => (

@@ -63,20 +63,20 @@ const teamMembers: TeamMember[] = [
 
 export function TeamProfiles() {
   return (
-    <section className="bg-silov-light-gray py-16 sm:py-20">
-      <div className="container mx-auto max-w-6xl px-2 sm:px-3">
-        <div className="space-y-8 lg:space-y-12">
+    <section className="bg-white py-12 sm:py-16">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="space-y-6">
           {teamMembers.map((member, index) => (
-            <div key={index} className="rounded-sm border border-border/40 bg-white p-8 md:p-12">
-              <div className="grid gap-10 md:grid-cols-3 md:gap-12">
+            <div key={index} className="rounded-lg border border-border/40 bg-white p-6 shadow-sm transition-shadow hover:shadow-md md:p-8">
+              <div className="grid gap-6 md:grid-cols-[200px_1fr] md:gap-8">
                 {/* Profile Image */}
                 <div className="md:col-span-1">
-                  <div className="relative mx-auto h-64 w-64 overflow-hidden rounded-full">
+                  <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-lg border-2 border-border/40 md:h-full md:w-full">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover grayscale"
+                      className="object-cover grayscale transition-all hover:grayscale-0"
                       onError={(e) => {
                         // Fallback to a placeholder if image doesn't exist
                         const target = e.target as HTMLImageElement;
@@ -87,13 +87,13 @@ export function TeamProfiles() {
                 </div>
 
                 {/* Profile Content */}
-                <div className="space-y-4 md:col-span-2">
+                <div className="space-y-4 md:col-span-1">
                   {/* Name and Title */}
                   <div className="text-left">
-                    <h2 className="text-3xl font-normal text-silov-black md:text-4xl">
+                    <h2 className="text-2xl font-medium text-silov-black md:text-3xl">
                       {member.name}
                     </h2>
-                    <h3 className="mt-2 text-lg font-normal text-muted-foreground">
+                    <h3 className="mt-1 text-base font-normal text-muted-foreground">
                       {member.title}
                     </h3>
                   </div>
@@ -175,15 +175,15 @@ export function TeamProfiles() {
                   {member.awards.length > 0 && (() => {
                     const [isAwardsOpen, setIsAwardsOpen] = React.useState(false);
                     return (
-                      <div>
+                      <div className="rounded-md border border-border/40 bg-gray-50/50">
                         <button
                           onClick={() => setIsAwardsOpen(!isAwardsOpen)}
-                          className="flex w-full items-center justify-between border-b border-border/40 pb-3 text-left text-xl font-normal text-silov-black transition-colors hover:text-silov-dark-gray focus:outline-none"
+                          className="flex w-full items-center justify-between p-4 text-left text-base font-medium text-silov-black transition-colors hover:bg-gray-100/50 focus:outline-none"
                           type="button"
                         >
                           <span>Awards and Honours</span>
                           <svg
-                            className={`h-5 w-5 transition-transform ${isAwardsOpen ? 'rotate-180' : ''}`}
+                            className={`h-4 w-4 transition-transform ${isAwardsOpen ? 'rotate-180' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -192,10 +192,10 @@ export function TeamProfiles() {
                           </svg>
                         </button>
                         {isAwardsOpen && (
-                          <ul className="mt-4 space-y-3">
+                          <ul className="space-y-2 border-t border-border/40 p-4">
                             {member.awards.map((award, awardIndex) => (
                               <li key={awardIndex} className="flex items-start">
-                                <span className="mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black"></span>
+                                <span className="mr-2 mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black"></span>
                                 <span className="text-sm font-normal text-silov-dark-gray">{award}</span>
                               </li>
                             ))}
@@ -209,15 +209,15 @@ export function TeamProfiles() {
                   {(() => {
                     const [isPublicationsOpen, setIsPublicationsOpen] = React.useState(false);
                     return (
-                      <div>
+                      <div className="rounded-md border border-border/40 bg-gray-50/50">
                         <button
                           onClick={() => setIsPublicationsOpen(!isPublicationsOpen)}
-                          className="flex w-full items-center justify-between border-b border-border/40 pb-3 text-left text-xl font-normal text-silov-black transition-colors hover:text-silov-dark-gray focus:outline-none"
+                          className="flex w-full items-center justify-between p-4 text-left text-base font-medium text-silov-black transition-colors hover:bg-gray-100/50 focus:outline-none"
                           type="button"
                         >
                           <span>Publications and Patents</span>
                           <svg
-                            className={`h-5 w-5 transition-transform ${isPublicationsOpen ? 'rotate-180' : ''}`}
+                            className={`h-4 w-4 transition-transform ${isPublicationsOpen ? 'rotate-180' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -226,10 +226,10 @@ export function TeamProfiles() {
                           </svg>
                         </button>
                         {isPublicationsOpen && (
-                          <ul className="mt-4 space-y-3">
+                          <ul className="space-y-2 border-t border-border/40 p-4">
                             {member.publications.map((publication, pubIndex) => (
                               <li key={pubIndex} className="flex items-start">
-                                <span className="mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-silov-black"></span>
+                                <span className="mr-2 mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-silov-black"></span>
                                 <span className="text-sm font-normal text-silov-dark-gray">{publication}</span>
                               </li>
                             ))}
