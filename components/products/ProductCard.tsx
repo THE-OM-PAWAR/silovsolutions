@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, FileDown, Mail } from "lucide-react";
+import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/data/products";
@@ -10,20 +13,60 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   return (
     <div
       id={product.id}
       className="rounded-lg border border-border bg-white transition-shadow hover:shadow-md"
     >
       <div className="grid gap-6 p-0 lg:grid-cols-[280px_1fr]">
-        <div className="overflow-hidden rounded-md sm:rounded-b-none lg:rounded-b-md lg:rounded-b border border-border bg-zinc-50">
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={560}
-            height={380}
-            className="h-full w-full object-cover"
-          />
+        <div className="relative flex h-[240px] w-full items-center justify-center overflow-hidden rounded-md sm:rounded-b-none lg:rounded-b-md border border-border bg-zinc-50 sm:h-[280px] lg:h-[300px]">
+          <div
+            ref={scrollRef}
+            className="flex h-full w-full min-h-0 items-center justify-start gap-0 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory scrollbar-hide"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {product.images.map((image, index) => (
+              <div
+                key={index}
+                className="min-w-full snap-center"
+                style={{ scrollSnapAlign: "center" }}
+              >
+                <Image
+                  src={image}
+                  alt={`${product.name} - Image ${index + 1}`}
+                  width={560}
+                  height={380}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
+          {product.images.length > 1 && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/40 backdrop-blur-sm px-2 py-1.5 rounded-full">
+              {product.images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (scrollRef.current) {
+                      const scrollWidth = scrollRef.current.scrollWidth;
+                      const targetScroll = (scrollWidth / product.images.length) * index;
+                      scrollRef.current.scrollTo({
+                        left: targetScroll,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="h-1.5 w-1.5 rounded-full bg-white/60 hover:bg-white transition-colors"
+                  aria-label={`View image ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="space-y-5 p-4">
           <div className="space-y-2">

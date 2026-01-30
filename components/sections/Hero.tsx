@@ -104,10 +104,10 @@ export function Hero() {
                   background: 'rgba(255,255,255,0.2)'
                 }}
               >
-                {category?.image ? (
+                {category?.images ? (
                   <Image
-                    src={category.image}
-                    alt={category.name || "Silov Product"}
+                    src={category.images[0]}
+                    alt={category.name}
                     fill
                     className="object-cover"
                     style={{

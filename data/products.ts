@@ -5,7 +5,7 @@ export type Product = {
   specs: string[];
   features: string[];
   useCases: string[];
-  image: string;
+  images: string[];
 };
 
 export type ProductCategory = {
@@ -44,8 +44,11 @@ export const productCategories: ProductCategory[] = [
           "De-rated PV operation",
           "Series/parallel connections",
         ],
-        image:
-          "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/1 kW Solar PV Emulator/screenshot-2025-07-21-at-6.30.58a-pm-dOqDnMeLVRIL6woe.avif",
+          "/products/1 kW Solar PV Emulator/screenshot-2025-07-22-at-10.43.21a-am-dJobQg0gK5SboapV.avif",
+          "/products/1 kW Solar PV Emulator/screenshot-2025-07-29-at-2.05.22a-pm-Yg2yZ5VDkGTW8k6L.avif",
+        ],
       },
       {
         id: "solar-pv-emulator-2kw",
@@ -67,8 +70,11 @@ export const productCategories: ProductCategory[] = [
           "Efficiency vs load characteristics",
           "Temperature effects on output",
         ],
-        image:
-          "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/2 kW Solar PV Emulator/screenshot-2025-07-29-at-2.06.18a-pm-Yyv0W2p70DHO21xy.avif",
+          "/products/2 kW Solar PV Emulator/screenshot-2025-07-29-at-2.07.28a-pm-AR03jVEerpfBR5EN.avif",
+          "/products/2 kW Solar PV Emulator/screenshot-2025-07-30-at-1.56.33a-pm-AMq8BR3R4zHlLQ2w.avif",
+        ],
       },
       {
         id: "wecs",
@@ -91,8 +97,10 @@ export const productCategories: ProductCategory[] = [
           "Tip-speed ratio optimization",
           "Wind gust simulation",
         ],
-        image:
-          "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Wind Energy Conversion System/screenshot-2025-07-22-at-10.57.59a-am-YbNJ70aW87U7rEDq.avif",
+          "/products/Wind Energy Conversion System/screenshot-2025-07-29-at-1.57.38a-pm-mjEG15K7RVF7y92n.avif",
+        ],
       },
     ],
   },
@@ -119,8 +127,12 @@ export const productCategories: ProductCategory[] = [
         useCases: [
           "Interfacing with temperature, humidity, voltage, and current sensors",
         ],
-        image:
-          "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Smart Data Logger/screenshot-2025-07-22-at-1.49.45a-pm-m7VbQ7VWRzIke364.avif",
+          "/products/Smart Data Logger/screenshot-2025-07-22-at-3.28.06a-pm-m7VbQeeo57so5J1v.avif",
+          "/products/Smart Data Logger/screenshot-2025-07-29-at-2.08.42a-pm-A3Q7LrMB8GujBqrq.avif",
+          "/products/Smart Data Logger/screenshot-2025-07-29-at-2.08.42a-pm-A3Q7LrMB8GujBqrq (1).avif",
+        ],
       },
       {
         id: "iv-curve-tracer",
@@ -135,8 +147,11 @@ export const productCategories: ProductCategory[] = [
         ],
         features: ["Rapid capture of I-V/P-V curves", "Portable diagnostics"],
         useCases: ["Analysis of Voc, Vmpp, MPPT, Isc"],
-        image:
-          "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/IV Curve Tracer/screenshot-2025-07-22-at-3.28.06a-pm-m7VbQeeo57so5J1v.avif",
+          "/products/IV Curve Tracer/screenshot-2025-07-29-at-2.08.42a-pm-A3Q7LrMB8GujBqrq.avif",
+          "/products/IV Curve Tracer/screenshot-2025-07-29-at-2.08.53a-pm-YanJlzkxRlIXzVx2.avif",
+        ],
       },
     ],
   },
@@ -166,8 +181,9 @@ export const productCategories: ProductCategory[] = [
           "MPPT control",
           "Modbus communication",
         ],
-        image:
-          "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Unidirectional DC-DC Converter/screenshot-2025-07-29-at-2.22.32a-pm-dOqDObjkRzF4wO5G.avif",
+        ],
       },
       {
         id: "bidirectional-inverter",
@@ -190,8 +206,12 @@ export const productCategories: ProductCategory[] = [
           "Battery-to-grid flow",
           "Id-Iq control",
         ],
-        image:
-          "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Bidirectional Inverter/screenshot-2025-07-25-at-12.44.24a-pm-mjEGe8zDMDHGG2gB.avif",
+          "/products/Bidirectional Inverter/screenshot-2025-07-25-at-12.44.34a-pm-YrDJ599K5vfGxpqK.avif",
+          "/products/Bidirectional Inverter/whatsapp-image-2025-07-18-at-9.37.35-pm-mp8Jggxj66IX4n4e.avif",
+          "/products/Bidirectional Inverter/whatsapp-image-2025-07-18-at-9.37.36-pm-A3Q766zqpWsJ76EW.avif",
+        ],
       },
       {
         id: "bidirectional-dc-dc-converter",
@@ -213,8 +233,9 @@ export const productCategories: ProductCategory[] = [
           "Battery charging/discharging",
           "Regenerative braking simulation",
         ],
-        image:
-          "https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Bidirectional DC-DC Convertor/screenshot-2025-07-29-at-2.21.26a-pm-YbNJPa6x9Gi0JMvB (1).avif",
+        ],
       },
       {
         id: "grid-sync-inverter",
@@ -232,8 +253,9 @@ export const productCategories: ProductCategory[] = [
           "Powering local equipment",
           "Active/reactive power control",
         ],
-        image:
-          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Bidirectional Inverter/screenshot-2025-07-25-at-12.44.24a-pm-mjEGe8zDMDHGG2gB.avif",
+        ],
       },
     ],
   },
@@ -259,8 +281,11 @@ export const productCategories: ProductCategory[] = [
           "OCPP protocol control",
           "BMS interaction",
         ],
-        image:
-          "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/EV Emulator/screenshot-2025-07-29-at-2.15.37a-pm-AGBbDvwO7RiDBgk7.avif",
+          "/products/EV Emulator/screenshot-2025-07-30-at-1.53.35a-pm-Awv9NlK1w0Iez2kR.avif",
+          "/products/EV Emulator/whatsapp-image-2025-07-23-at-9.32.08-pm-Y4LvBoEqzJT4JZWO.avif",
+        ],
       },
       {
         id: "dc-fast-ev-charger",
@@ -279,8 +304,10 @@ export const productCategories: ProductCategory[] = [
           "Analyzing EV data (SoC, voltage demand)",
           "Bi-directional flow",
         ],
-        image:
-          "https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/DC Fast EV Charger/ba1b675b-f0e8-40f6-ab8d-808fcf4e5dbe-YZ9xeNZZPvcBDzBk.avif",
+          "/products/DC Fast EV Charger/screenshot-2025-07-22-at-2.28.40a-pm-m7VbQ7J85RHb52NO.avif",
+        ],
       },
       {
         id: "smart-ac-evse",
@@ -295,8 +322,10 @@ export const productCategories: ProductCategory[] = [
         ],
         features: ["Remote monitoring", "Load management"],
         useCases: ["PWM generation current control", "Solar emulator integration"],
-        image:
-          "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+        images: [
+          "/products/Smart AC EVSE/screenshot-2025-07-29-at-2.13.25a-pm-mjEG15Jbp1SOlXn9.avif",
+          "/products/Smart AC EVSE/screenshot-2025-07-30-at-1.54.10a-pm-mePJDzKkkEHbBrrl.avif",
+        ],
       },
     ],
   },
