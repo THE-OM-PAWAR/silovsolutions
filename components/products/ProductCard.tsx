@@ -114,14 +114,18 @@ export function ProductCard({ product }: ProductCardProps) {
             </Button>
             <Button asChild size="sm" variant="outline" className="h-9 rounded-md text-xs font-medium">
               <Link
-                href="mailto:silov.solutions@gmail.com?subject=Brochure%20Request"
+                href="/silov---product-brochure-mp8qEgybbLS49KRq.pdf"
+                download="Silov-Product-Brochure.pdf"
               >
                 Brochure
                 <FileDown className="ml-1.5 h-3.5 w-3.5" />
               </Link>
             </Button>
             <Button asChild size="sm" variant="secondary" className="h-9 rounded-md text-xs font-medium">
-              <Link href="#custom-requirements">
+              <Link 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd84YpNoytdjZOiEv76Dd4x1ovmDkxuMa-vVEEopUpiCXAqEA/viewform"
+                target="_blank"
+              >
                 Contact
                 <Mail className="ml-1.5 h-3.5 w-3.5" />
               </Link>
