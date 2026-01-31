@@ -47,15 +47,17 @@ export function CoreTeam() {
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {team.map((member) => (
-            <Card key={member.name} className="border-border/60 bg-white">
-              <CardContent className="space-y-4 p-6">
-                <div className="overflow-hidden rounded-2xl border border-border/60">
+            <Card key={member.name} className="border-border/60 bg-white flex flex-col">
+              <CardContent className="space-y-4 p-6 flex flex-col">
+                <div 
+                  className="relative w-full overflow-hidden rounded-2xl border border-border/60 flex-shrink-0 aspect-square" 
+                >
                   <Image
                     src={member.image}
                     alt={member.name}
-                    width={600}
-                    height={700}
-                    className="h-56 w-full object-cover"
+                    fill
+                    sizes="100vw, 43vw"
+                    className="object-cover"
                   />
                 </div>
                 <div className="space-y-1">
@@ -77,4 +79,3 @@ export function CoreTeam() {
     </section>
   );
 }
-

@@ -28,7 +28,7 @@ function TeamCard({ member }: { member: (typeof team)[0] }) {
   return (
     <article className="group flex h-full max-w-[280px] mx-auto flex-col overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-xl sm:max-w-none sm:mx-0">
       {/* Photo */}
-      <div className="relative h-50 w-full aspect-square overflow-hidden bg-gray-100 sm:h-40">
+      <div className="relative w-full flex-shrink-0 overflow-hidden bg-gray-100" style={{ aspectRatio: '1 / 1' }}>
         <Image
           src={member.image}
           alt={member.name}

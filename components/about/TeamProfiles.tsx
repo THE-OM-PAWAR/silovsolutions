@@ -70,8 +70,11 @@ export function TeamProfiles() {
             <div key={index} className="rounded-lg border border-border/40 bg-white p-6 shadow-sm transition-shadow hover:shadow-md md:p-8">
               <div className="grid gap-6 md:grid-cols-[200px_1fr] md:gap-8">
                 {/* Profile Image */}
-                <div className="md:col-span-1">
-                  <div className="relative mx-auto h-48 w-48 overflow-hidden rounded-lg border-2 border-border/40 md:h-full md:w-full">
+                <div className="md:col-span-1 flex-shrink-0">
+                  <div 
+                    className="relative mx-auto w-48 overflow-hidden rounded-lg border-2 border-border/40 md:w-full" 
+                    style={{ aspectRatio: '1', minHeight: 0 }}
+                  >
                     <Image
                       src={member.image}
                       alt={member.name}
