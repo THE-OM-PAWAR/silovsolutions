@@ -182,7 +182,7 @@ export const productCategories: ProductCategory[] = [
           "Modbus communication",
         ],
         images: [
-          "/products/Unidirectional DC-DC Converter/screenshot-2025-07-29-at-2.22.32a-pm-dOqDObjkRzF4wO5G.avif",
+          "/products/screenshot-2025-07-29-at-2.21.26a-pm-YbNJPa6x9Gi0JMvB.avif",
         ],
       },
       {
