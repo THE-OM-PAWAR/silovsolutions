@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
 
 const awards = [
   {
@@ -43,6 +44,8 @@ const awards = [
 ];
 
 export function Awards() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   return (
     <section className="bg-white py-12 sm:py-16 lg:py-20 min-h-screen flex items-center">
       <div className="mx-auto w-full max-w-7xl space-y-10 px-6 sm:px-8 lg:space-y-12">
@@ -57,17 +60,19 @@ export function Awards() {
           </p>
         </div>
 
-        {/* Scrollable Cards */}
-        <div
-          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
-          style={{
-            scrollBehavior: "smooth",
-          }}
-        >
+        {/* Scrollable Cards with Navigation */}
+        <div className="relative">
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+            style={{
+              scrollBehavior: "smooth",
+            }}
+          >
           {awards.map((award) => (
             <div
               key={`${award.title}-${award.year}`}
-              className="group relative flex-shrink-0 w-[70vw] sm:w-[280px] lg:w-[300px] h-[420px] sm:h-[440px] overflow-hidden rounded-[28px] bg-white shadow-lg transition-all hover:shadow-2xl hover:scale-[1.02] snap-center snap-always"
+              className="group relative flex-shrink-0 w-[70vw] sm:w-[260px] lg:w-[280px] h-[420px] sm:h-[440px] overflow-hidden rounded-[28px] bg-white shadow-lg transition-all snap-center snap-always"
             >
               {/* Top Section - Colored Header */}
               <div className={`relative ${award.color} h-[45%] p-6 sm:p-7 flex flex-col`}>
@@ -113,15 +118,10 @@ export function Awards() {
                   />
                 </div>
                 {/* Read More Button */}
-                <div className="absolute bottom-4 left-4">
-                  <button className="group/btn bg-white/95 backdrop-blur-sm hover:bg-white rounded-full px-4 py-2 flex items-center gap-2 transition-all shadow-md hover:shadow-lg border border-silov-black/10">
-                    <span className="text-xs font-semibold text-silov-black sm:text-sm">Read More</span>
-                    <ArrowRight className="h-3.5 w-3.5 text-silov-black transition-transform group-hover/btn:translate-x-1 sm:h-4 sm:w-4" />
-                  </button>
-                </div>
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </section>

@@ -9,9 +9,12 @@ import { InquiryForm } from "@/components/contact/InquiryForm";
 import { TrustBanner } from "@/components/contact/TrustBanner";
 
 export const metadata: Metadata = {
-  title: "Silov Solutions | Contact Us",
+  title: "Contact Silov Solutions | Product Inquiries & Partnerships",
   description:
-    "Get in touch with Silov Solutions for product inquiries, partnerships, and career opportunities.",
+    "Contact Silov Solutions for power electronics product inquiries, custom engineering solutions, partnerships, and career opportunities. Based at IIT Delhi, serving India and global B2B clients.",
+  alternates: {
+    canonical: "https://silovsolutions.com/contact",
+  },
 };
 
 export default function ContactPage() {

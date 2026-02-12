@@ -71,7 +71,7 @@ export function CareersSection() {
           title: "New Career Application",
           message: `Name: ${formData.name}\nArea of Expertise: ${formData.expertise}\n\nResume (View): ${url}\nResume (Download): ${downloadUrl}`,
         }
-      );
+      );``
 
       console.log("EmailJS Success:", result);
       alert("✅ Application submitted successfully! We'll review your resume and get back to you soon.");

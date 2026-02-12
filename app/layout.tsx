@@ -19,9 +19,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Silov Solutions | Power Electronics Innovation",
+  title: "Silov Solutions | Power Electronics & Renewable Energy Systems",
   description:
-    "Silov Solutions builds power electronics, renewable energy systems, and EV ecosystem solutions for engineering and B2B partners.",
+    "Silov Solutions designs and builds advanced power electronics, renewable energy systems, and EV ecosystem solutions for engineering and B2B partners in India and worldwide.",
   keywords: [
     "power electronics",
     "renewable energy",
@@ -40,16 +40,19 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://silovsolutions.com",
-    title: "Silov Solutions | Power Electronics Innovation",
+    title: "Silov Solutions | Power Electronics & Renewable Energy Systems",
     description:
-      "Silov Solutions builds power electronics, renewable energy systems, and EV ecosystem solutions for engineering and B2B partners.",
+      "Power electronics, grid-tied inverters, solar and wind emulators, smart data loggers, and EV charging ecosystem solutions for global engineering and B2B partners.",
     siteName: "Silov Solutions",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Silov Solutions | Power Electronics Innovation",
+    title: "Silov Solutions | Power Electronics & Renewable Energy Systems",
     description:
-      "Power electronics, renewable energy systems, and EV ecosystem solutions.",
+      "Power electronics, renewable energy systems, and EV ecosystem solutions for engineering and B2B customers.",
+  },
+  alternates: {
+    canonical: "https://silovsolutions.com",
   },
   icons: {
     icon: [
@@ -95,11 +98,45 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Silov Solutions Pvt. Ltd.",
+    url: "https://silovsolutions.com",
+    logo:
+      "https://silovsolutions.com/Silovhome/screenshot-2025-02-06-at-11.52.04a-am-AwvD2bRZelspa1GG.avif",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress:
+        "Technology Business Incubation Unit (TBIU), 2nd Floor, Synergy Building, IIT Delhi",
+      addressLocality: "New Delhi",
+      postalCode: "110016",
+      addressCountry: "IN",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+91-85273-32502",
+        contactType: "sales",
+        email: "silov.solutions@gmail.com",
+        areaServed: ["IN", "US", "EU"],
+        availableLanguage: ["en"],
+      },
+    ],
+  };
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         {children}
       </body>
     </html>

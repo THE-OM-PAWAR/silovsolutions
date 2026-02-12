@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { productCategories } from "@/data/products";
@@ -60,7 +58,7 @@ export function Hero() {
               key={category?.categoryId ?? index}
               className={`
                 flex-shrink-0 snap-center snap-always
-                w-[260px] sm:w-[280px] lg:w-[300px] 
+                w-[260px] sm:w-[280px] lg:w-[280px] 
                 h-[380px] sm:h-[400px] lg:h-[420px] 
                 flex flex-col
                 group relative overflow-hidden rounded-[28px] 

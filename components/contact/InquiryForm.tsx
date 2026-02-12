@@ -29,8 +29,8 @@ export function InquiryForm() {
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
         {
-          from_name: formData.fullName,
-          from_email: formData.email,
+          name: formData.fullName,
+          email: formData.email,
           title: formData.subject,
           message: formData.message,
         }

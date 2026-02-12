@@ -9,9 +9,12 @@ import { ProductsHero } from "@/components/products/ProductsHero";
 import { productCategories } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "Silov Solutions | Products",
+  title: "Silov Solutions Products | Power System Emulators, PCUs, IoT & EV Ecosystem",
   description:
-    "Explore Silov Solutions product categories across power system emulators, IoT infrastructure, power conditioning units, and EV ecosystem.",
+    "Explore Silov Solutions product categories including power system emulators, power conditioning units, IoT infrastructure, and EV ecosystem solutions for labs and industry.",
+  alternates: {
+    canonical: "https://silovsolutions.com/products",
+  },
 };
 
 export default function ProductsPage() {
